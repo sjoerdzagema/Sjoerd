@@ -73,12 +73,23 @@ input[type=submit]:hover {
   clear: both;
 }
 
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] {
     width: 100%;
     margin-top: 0;
   }
+}
+.display-1 {
+  font-size: 1000%;
 }
 </style>
 
@@ -96,46 +107,16 @@ input[type=submit]:hover {
   </a>
 </div>
 
-<div class="container-fluid">
-  <h1>Hello World!</h1>
-  <div class="row">
-    <div class="col-sm-3" style="background-color:yellow;">
-      <p>Lorem ipsum...</p>
-    </div>
-    <div class="col-sm-9" style="background-color:pink;">
-      <p>Sed ut perspiciatis...</p>
-    </div>
-  </div>
-</div>
 
 <?php
 $username = $_SESSION['usernamelogin']
 ?>
 
-<div class="container-fluid">
-  <h1><?php echo $username ?></h1>
-  <div class="row">
-    <div class="col-sm-3" style="background-color:yellow;">
-      <p>Lorem ipsum...</p>
-    </div>
-    <div class="col-sm-9" style="background-color:pink;">
-      <p>Sed ut perspiciatis...</p>
-    </div>
-  </div>
+<div class="container">
+<div class="row">
+  <div class="col-sm"><h5><?php echo $username ?></h5></div>
+  <div class="col-sm" ><h1 class="display-1">301</h1></div>
 </div>
-
-<div class="container-fluid">
-  <h1>Hello World!</h1>
-  <div class="row">
-    <div class="col-sm-3" style="background-color:yellow;">
-      <p>Lorem ipsum...</p>
-    </div>
-    <div class="col-sm-9" style="background-color:pink;">
-      <p>Sed ut perspiciatis...</p>
-    </div>
-  </div>
-</div>
-
 
 
 <script>
