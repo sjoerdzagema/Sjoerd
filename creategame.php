@@ -105,14 +105,6 @@ input[type=submit]:hover {
       </div>
     </div>
     <div class="row">
-      <div class="col-25">
-        <label for="lname">Create token</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="lname" name="inputtoken" placeholder="Enter a 4 digit number f.e. 4565">
-      </div>
-    </div>        
-    <div class="row">
       <input type="submit" value="Create Game">
     </div>
   </form>

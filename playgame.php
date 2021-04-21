@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
+    header("Location: https://localhost/Sjoerd/login.html");
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +14,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="dashboard.css">
-<link rel="stylesheet" href="spinner.css">
+
 
 <style>
 * {
@@ -88,23 +96,47 @@ input[type=submit]:hover {
   </a>
 </div>
 
-<div class="container">
-  <form action = 'submit' method = "post">
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Token</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="token" name="token" placeholder="Enter here the token one of the players generated">
-      </div>
-    
-    <div class="row">
-      <input type="submit" value="Start Game">
+<div class="container-fluid">
+  <h1>Hello World!</h1>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:yellow;">
+      <p>Lorem ipsum...</p>
     </div>
-  </form>
+    <div class="col-sm-9" style="background-color:pink;">
+      <p>Sed ut perspiciatis...</p>
+    </div>
+  </div>
 </div>
 
-<div id="cover-spin"></div>
+<?php
+$username = $_SESSION['usernamelogin']
+?>
+
+<div class="container-fluid">
+  <h1><?php echo $username ?></h1>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:yellow;">
+      <p>Lorem ipsum...</p>
+    </div>
+    <div class="col-sm-9" style="background-color:pink;">
+      <p>Sed ut perspiciatis...</p>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <h1>Hello World!</h1>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:yellow;">
+      <p>Lorem ipsum...</p>
+    </div>
+    <div class="col-sm-9" style="background-color:pink;">
+      <p>Sed ut perspiciatis...</p>
+    </div>
+  </div>
+</div>
+
+
 
 <script>
 function myFunction() {
@@ -116,41 +148,5 @@ function myFunction() {
   }
 }
 </script>
-
-
-<script>
-  /*
-$(function() {
-    //hang on event of form with id=myform
-    $("#chill").submit(function(e) {
-      $('#cover-spin').show();
-
-        //prevent Default functionality
-        e.preventDefault();
-        var token = $("#token").val();
-        alert(token);
-
-        $.post("checkplayers.php",{
-    token: token
-      },function(response){
-    alert(response);
-    if (reponse == 'gameready') {
-
-
-      alert("match");
-     }
-     $('#cover-spin').hide();
-    window.location.replace("https://localhost/Sjoerd/login.html");
-    
-  });
-
-
-});
-});
-  */
-</script>
-
-
-
 </body>
 </html>
