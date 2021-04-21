@@ -3,7 +3,6 @@ require_once("config.php");
 
 $result = mysqli_query($conn,"SELECT name,rating FROM standings ORDER BY rating DESC");
 
-<div class="table-responsive-sm">
 <table class="table">
   <caption></caption>
   <thead>
@@ -35,7 +34,6 @@ $result = mysqli_query($conn,"SELECT name,rating FROM standings ORDER BY rating 
     </tr>
   </tbody>
 </table>
-</div>
 
 
 <table class = "table table-hover">
