@@ -27,7 +27,7 @@ require_once("settimelogin.php");
 header('Location: https://localhost/Sjoerd/dashboard.php');
      }
   else {
-    echo "0 results";
+    header('Location: https://localhost/Sjoerd/login.html');
   }
 
   $conn->close();

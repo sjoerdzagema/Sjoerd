@@ -4,13 +4,13 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
     header("Location: https://localhost/Sjoerd/login.html");
     die();
 }
-
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="dashboard.css">
@@ -21,7 +21,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
   box-sizing: border-box;
 }
 
-input[type=text], select, textarea {
+input[type=number], select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -73,13 +73,31 @@ input[type=submit]:hover {
   clear: both;
 }
 
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 0;
   }
 }
+.display-1 {
+  font-size: 400%;
+  text-align: center;
+}
+
+.display-2 {
+  font-size: 175%;
+  text-align: center;
+}
+
 </style>
 
 </head>
@@ -96,47 +114,26 @@ input[type=submit]:hover {
   </a>
 </div>
 
-<?php $username = $_SESSION['usernamelogin'] ?>
+
+<?php
+$username = $_SESSION['usernamelogin']
+?>
 
 <div class="container">
-<form action="newgame.php" method="POST">
+  <form action="checkplayers.php" method="POST">
     <div class="row">
-      <div class="col-25">
-        <label for="fname">Player 1</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="fname" readonly name="player1" placeholder= " <?php echo $username?> ">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="lname">Player 2</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="lname" name="player2" placeholder="Enter the username of your opponent">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="lname">Token</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="lname" name="token" placeholder="Enter a 4 digit number f.e. 4355 and remember this">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="lname">Player that can start the game</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="lname" name="playercanstart" placeholder="enter the username of the player that can start">
-      </div>
-    </div>
-    <div class="row">
-      <input type="submit" value="Create Game">
-    </div>
-  </form>
+    <div class="col text-center">
+      <div class="col-xs-12">
+        <label for="ex1">Token</label>
+        <input class="form-control" id="ex1" name = "token" type="number">
+      </div>      
+      <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+      </div>  
+  </div>
 </div>
+</div>
+  
 
 <script>
 function myFunction() {
@@ -148,6 +145,5 @@ function myFunction() {
   }
 }
 </script>
-
 </body>
 </html>

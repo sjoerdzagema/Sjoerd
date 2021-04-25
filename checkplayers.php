@@ -10,31 +10,35 @@ require_once("config.php");
 
 $token = ($_POST['token']);
 
-$result = mysqli_query($conn,"SELECT gameid,players_active,token FROM games WHERE result IS NULL AND token = $token");
+$usernamecheck = $_SESSION['usernamelogin'];
+$useridcheck = $_SESSION['userid'];
+//var_dump($usernamecheck);
+
+// player 1 or player 2
+
+$result = mysqli_query($conn,"SELECT gameid,player1,player2 FROM games WHERE result IS NULL AND token = $token");
 
 
 if (mysqli_num_rows($result) == 1){
 
   while ($row = mysqli_fetch_assoc($result)) {
-    //var_dump($row["players_active"]);
-    $activeplayers = (int)$row["players_active"] + 1;
-    //var_dump($activeplayers);
-    $gameid = (int)$row["gameid"];
-    //var_dump($gameid);
-    $inserttoken = "UPDATE games SET players_active=$activeplayers WHERE gameid = $gameid";
-    if ($conn->query($inserttoken) === TRUE) {
-      if ($activeplayers == 2){
-        echo "gameready";
-      }
-      if ($activeplayers == 1){
-        echo "waiting other player";
-      }
-      if ($activeplayers > 2){
-        
-      echo "problem";}
+
+    if ($useridcheck == $row['player2']){
+      var_dump($useridcheck);
+      $rowgameid =(int)$row['gameid'];
+     $updateactivestatus = "UPDATE games SET player2_active = 'true' WHERE gameid = $rowgameid";
+      
+    if ($conn->query($updateactivestatus) === FALSE) {     
+              echo "problem";}
     }
+
   }
-}
+
+    }  
+    
+
+
+
 else{die();}
 
 

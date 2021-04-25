@@ -123,14 +123,14 @@ $username = $_SESSION['usernamelogin']
 <div class="row">
   <div class="col-sm"><h5 class="display-2"><?php echo $username ?></h5></div>
   <div class="col-sm" ><h1 class="display-1">301</h1></div>
-  <form>
+  <form action="loginvalidation.php" method="POST">
     <div class="row">
     <div class="col text-center">
       <div class="col-xs-12">
         <label for="ex1">score <?php echo $username ?></label>
-        <input class="form-control" id="ex1" type="text">
+        <input class="form-control" id="ex1" type="number">
       </div>      
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="submit" class="btn btn-success">Submit score</button>
       </form>
       </div>  
   </div>
@@ -146,7 +146,7 @@ $username = $_SESSION['usernamelogin']
     <div class="col text-center">
       <div class="col-xs-12">
         <label for="ex1">score <?php echo $username ?></label>
-        <input class="form-control" id="ex1" type="text">
+        <input class="form-control" id="ex1" type="number">
       </div>      
       <button type="submit" class="btn btn-success">Submit</button>
       </form>

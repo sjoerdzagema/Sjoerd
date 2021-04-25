@@ -20,7 +20,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
 <div class="topnav" id="myTopnav">
   <a href="#home" class="active">Standing</a>
   <a href="creategame.php">Create Game</a>
-  <a href="playgame.php">Play Game</a>
+  <a href="playgametoken.php">Play Game</a>
   <a href="#contact">Stats</a>
   <a href="destroysession.php" onclick="endsession()">Log out </a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
