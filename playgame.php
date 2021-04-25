@@ -89,8 +89,15 @@ input[type=submit]:hover {
   }
 }
 .display-1 {
-  font-size: 1000%;
+  font-size: 400%;
+  text-align: center;
 }
+
+.display-2 {
+  font-size: 175%;
+  text-align: center;
+}
+
 </style>
 
 </head>
@@ -114,10 +121,40 @@ $username = $_SESSION['usernamelogin']
 
 <div class="container">
 <div class="row">
-  <div class="col-sm"><h5><?php echo $username ?></h5></div>
+  <div class="col-sm"><h5 class="display-2"><?php echo $username ?></h5></div>
   <div class="col-sm" ><h1 class="display-1">301</h1></div>
+  <form>
+    <div class="row">
+    <div class="col text-center">
+      <div class="col-xs-12">
+        <label for="ex1">score <?php echo $username ?></label>
+        <input class="form-control" id="ex1" type="text">
+      </div>      
+      <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+      </div>  
+  </div>
 </div>
-
+</div>
+  
+<div class="container">
+<div class="row">
+  <div class="col-sm"><h5 class="display-2"><?php echo $username ?></h5></div>
+  <div class="col-sm" ><h1 class="display-1">301</h1></div>
+  <form>
+    <div class="row">
+    <div class="col text-center">
+      <div class="col-xs-12">
+        <label for="ex1">score <?php echo $username ?></label>
+        <input class="form-control" id="ex1" type="text">
+      </div>      
+      <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+      </div>
+      </div>  
+  </div>
+</div>
+</div>
 
 <script>
 function myFunction() {
