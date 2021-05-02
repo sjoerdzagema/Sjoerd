@@ -111,19 +111,25 @@ input[type=submit]:hover {
 <?php
 
 $username = $_SESSION['usernamelogin'];
-
+require_once("calculatescore.php");
 
 
 ?>
 <div class="container">
 <div class="row">
-  <div class="col-sm"><h5 class="display-2"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-</svg></i>test</h5></div>
-  <div class="col-sm" ><h1 class="display-1">test</h1></div>
-
-  
-  </div>
+  <div class="col-sm"><h5 class="display-1"><?php echo 'Winner ', $winnerusername; ?></h5></div>
+  <div class="col-sm" ><h1 class="display-2"><?php echo '+ ', $rankingchange1; ?></h1></div>
+  <div class="col-sm"><h5 class="display-1"><?php echo 'Loser ', $loserusername; ?></h5></div>
+  <div class="col-sm" ><h1 class="display-2"><?php echo '- ', $rankingchange1; ?></h1></div>    
+  </div>   
+</div>
+<div class="container">
+<div class="row">
+  <div class="col-sm"><h10><?php echo 'Highest score ', $winnerusername; ?></h10></div>
+  <div class="col-sm" ><h1 class="display-2"><?php echo '+ ', $rankingchange1; ?></h1></div>
+  <div class="col-sm"><h5 class="display-1"><?php echo 'Loser ', $loserusername; ?></h5></div>
+  <div class="col-sm" ><h1 class="display-2"><?php echo '- ', $rankingchange1; ?></h1></div>    
+  </div>   
 </div>
 
 
