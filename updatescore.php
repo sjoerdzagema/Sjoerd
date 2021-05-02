@@ -1,9 +1,111 @@
 <?php
+
+session_start();
 require_once("config.php");
-$token = ($_POST['token']);
+require_once("sqlgetgameinfo.php");
 
-#$result = mysqli_query($conn,"SELECT name,rating FROM standings ORDER BY rating DESC");
+$score = ($_POST['score']);
+$playerid = $_SESSION['userid'];
+$gameid = $_SESSION['gameid'];
+
+if ($score > 180){
+  header("Location: https://localhost/Sjoerd/playgame.php");
+          die(); 
+}
 
 
+if ($_SESSION['player1id'] == $_SESSION['userid']){
+  if(($_SESSION['player1score'] - $score) > 0 && $score <= 180){
+  $_SESSION['player1score'] = ($_SESSION['player1score'] - $score);
+  $newscore = $_SESSION['player1score'];
+  
+
+  $updatescore = "UPDATE games SET player1score = $newscore WHERE gameid = $gameid";      
+  if ($conn->query($updatescore) === FALSE) {     
+            echo "problem";
+          die();}
+          require_once("updateplayer1.php");
+
+          $sql = "INSERT INTO scores (playerid, gameid, score)
+VALUES ($playerid, $gameid, $score)";
+
+if ($conn->query($sql) === FALSE) {
+ 
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+header("Location: https://localhost/Sjoerd/playgame.php");
+die();
+}
+}
+
+
+  if ($_SESSION['player2id'] == $_SESSION['userid']){
+    if(($_SESSION['player2score'] - $score) > 0 && $score <= 180){
+    $_SESSION['player2score'] = ($_SESSION['player2score'] - $score);
+    $newscore = $_SESSION['player2score'];
+
+    
+
+    $updatescore = "UPDATE games SET player2score = $newscore WHERE gameid = $gameid";      
+    if ($conn->query($updatescore) === FALSE) {     
+              echo "problem";
+            die();}
+            
+            require_once("updateplayer2.php");
+            $sql = "INSERT INTO scores (playerid, gameid, score)
+VALUES ($playerid, $gameid, $score)";
+
+if ($conn->query($sql) === FALSE) {
+ 
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+header("Location: https://localhost/Sjoerd/playgame.php");
+die();
+}
+}
+
+
+if ($_SESSION['player1id'] == $_SESSION['userid']){
+  if(($_SESSION['player1score'] - $score) == 0 && $score <= 180){
+    $player1id = $_SESSION['player1id'];
+      $endresult1 = "UPDATE games SET result = $player1id WHERE gameid = $gameid";      
+    if ($conn->query($endresult1) === FALSE) {     
+              echo "problem2";
+            die();}
+            $date = date('Y-m-d H:i:s');
+            $endresult10 = "UPDATE games SET endtime = '$date' WHERE gameid = $gameid";      
+            if ($conn->query($endresult10) === FALSE) {     
+                      echo "problem2";
+                    die();}        
+            header("Location: https://localhost/Sjoerd/win.php");
+            die();     
+    // 10 - (verschil ranking / rating player1 + rating player 2) * 10
+
+    }
+  }
+
+  if ($_SESSION['player2id'] == $_SESSION['userid']){
+    if(($_SESSION['player2score'] - $score) == 0 && $score <= 180){
+      $player2id = $_SESSION['player2id'];
+        $endresult2 = "UPDATE games SET result = $player2id WHERE gameid = $gameid";      
+      if ($conn->query($endresult2) === FALSE) {     
+                echo "problem3";
+              die();}
+              $date = date('Y-m-d H:i:s');
+              $endresult10 = "UPDATE games SET endtime = '$date' WHERE gameid = $gameid";      
+              if ($conn->query($endresult10) === FALSE) {     
+                        echo "problem2";
+                      die();}     
+              header("Location: https://localhost/Sjoerd/win.php");
+              die();      
+
+      // 10 - (verschil ranking / rating player1 + rating player 2) * 10
+  
+      }
+    }
 
 ?>

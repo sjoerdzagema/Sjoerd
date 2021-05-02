@@ -98,6 +98,10 @@ input[type=submit]:hover {
   text-align: center;
 }
 
+.btn-success {
+  margin-top: 20px !important;
+}
+
 </style>
 
 </head>
@@ -116,19 +120,58 @@ input[type=submit]:hover {
 
 
 <?php
-$username = $_SESSION['usernamelogin']
+require_once("config.php");
+require_once("sqlgetgameinfo.php");
+
+// in this case player1 id 
+if($_SESSION['player1id'] == $_SESSION['userid']){
+  $scoreplayer = $_SESSION['player1score'];
+  $otherplayer = (int)$_SESSION['player2id'];
+  $otherscore = $_SESSION['player2score'];
+  $getotherusername = mysqli_query($conn,"SELECT username FROM users WHERE userID = $otherplayer");
+
+  if (mysqli_num_rows($getotherusername) == 1){
+
+    while ($row = mysqli_fetch_assoc($getotherusername)) {
+      $_SESSION['otherusername'] = $row['username'];}
+  
+
+}
+}
+
+
+else{$scoreplayer = $_SESSION['player2score'];
+  $otherplayer = $_SESSION['player1id'];
+  $otherscore = $_SESSION['player1score'];
+
+  $getotherusername1 = mysqli_query($conn,"SELECT username FROM users WHERE userID = $otherplayer");
+
+  if (mysqli_num_rows($getotherusername1) == 1){
+
+    while ($row = mysqli_fetch_assoc($getotherusername1)) {
+      $_SESSION['otherusername'] = $row['username'];}
+  
+
+}
+
+}
+
 ?>
 
 <div class="container">
 <div class="row">
-  <div class="col-sm"><h5 class="display-2"><?php echo $username ?></h5></div>
-  <div class="col-sm" ><h1 class="display-1">301</h1></div>
-  <form action="loginvalidation.php" method="POST">
+  <div class="col-sm"><h5 class="display-2"><?php echo $_SESSION['usernamelogin']; ?></h5></div>
+  <div class="col-sm" ><h1 class="display-1"><?php echo $scoreplayer ?></h1></div>
+
+  <?php
+if ($_SESSION['playerturn'] == $_SESSION['userid'] ) : ?>
+ 
+  <form action="updatescore.php" method="POST">
     <div class="row">
     <div class="col text-center">
       <div class="col-xs-12">
-        <label for="ex1">score <?php echo $username ?></label>
-        <input class="form-control" id="ex1" type="number">
+        <label for="ex1">score <?php echo  $_SESSION['usernamelogin']?></label>
+        <input class="form-control" name="score" type="number">
       </div>      
       <button type="submit" class="btn btn-success">Submit score</button>
       </form>
@@ -136,25 +179,16 @@ $username = $_SESSION['usernamelogin']
   </div>
 </div>
 </div>
-  
+<?php endif; ?>
+
 <div class="container">
 <div class="row">
-  <div class="col-sm"><h5 class="display-2"><?php echo $username ?></h5></div>
-  <div class="col-sm" ><h1 class="display-1">301</h1></div>
-  <form>
-    <div class="row">
-    <div class="col text-center">
-      <div class="col-xs-12">
-        <label for="ex1">score <?php echo $username ?></label>
-        <input class="form-control" id="ex1" type="number">
-      </div>      
-      <button type="submit" class="btn btn-success">Submit</button>
-      </form>
-      </div>
-      </div>  
-  </div>
+  <div class="col-sm"><h5 class="display-2"><?php echo $_SESSION['otherusername'];
+?></h5></div>
+  <div class="col-sm" ><h1 class="display-1"><?php echo $otherscore ?></h1></div>
 </div>
 </div>
+
 
 <script>
 function myFunction() {
@@ -166,5 +200,45 @@ function myFunction() {
   }
 }
 </script>
+
+
+<script>
+
+$(document).ready(function() {
+  setInterval(function() {
+    cache_clear()
+  }, 10000);
+});
+
+function cache_clear() {
+  window.location.reload(true);
+  // window.location.reload(); use this if you do not remove cache
+}
+
+
+</script>
+
+<script>
+
+//Call the yourAjaxCall() function every 1000 millisecond
+setInterval("yourAjaxCall()",3000);
+
+function yourAjaxCall(){
+  $.ajax({    //create an ajax request to display.php
+        type: "GET",
+        url: "checkresult.php",             
+        dataType: "html",   //expect html to be returned                
+        success: function(response){  
+          if (response == "finished"){
+            window.location.replace("https://localhost/Sjoerd/win.php");
+              }                  
+        }
+
+    });
+}
+  
+</script>
+
+
 </body>
 </html>

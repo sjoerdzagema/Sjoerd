@@ -14,6 +14,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="spinner.css">
 
 
 <style>
@@ -120,12 +121,12 @@ $username = $_SESSION['usernamelogin']
 ?>
 
 <div class="container">
-  <form action="checkplayers.php" method="POST">
+  <form id = "chill">
     <div class="row">
     <div class="col text-center">
       <div class="col-xs-12">
         <label for="ex1">Token</label>
-        <input class="form-control" id="ex1" name = "token" type="number">
+        <input class="form-control" id="token" name = "token" type="number">
       </div>      
       <button type="submit" class="btn btn-success">Submit</button>
       </form>
@@ -134,6 +135,7 @@ $username = $_SESSION['usernamelogin']
 </div>
 </div>
   
+<div id="cover-spin"></div>
 
 <script>
 function myFunction() {
@@ -144,6 +146,41 @@ function myFunction() {
     x.className = "topnav";
   }
 }
+</script>
+
+<script>
+
+$(function () {
+    //hang on event of form with id=myform
+    $("#chill").submit(function(e) {
+      checkready();
+      function checkready(){
+      $('#cover-spin').show();
+        //prevent Default functionality
+        e.preventDefault();
+        var token = $("#token").val();
+        //alert(token);
+        $.post("checkplayers.php",{
+    token: token
+      },function(response){
+    if (response == 'gameready') {
+      //alert("match");
+      $('#cover-spin').hide();
+    window.location.replace("https://localhost/Sjoerd/playgame.php");
+     }
+    if (response == 'problem'){
+      $('#cover-spin').hide();
+    window.location.replace("https://localhost/Sjoerd/playgametoken.php");
+    }
+    else {setTimeout(checkready, 5000);}
+     
+    
+  });
+      };
+});
+});
+
+  
 </script>
 </body>
 </html>

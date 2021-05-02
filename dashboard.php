@@ -12,16 +12,13 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
-
-
-
 <link rel="stylesheet" href="dashboard.css">
 
 </head>
 <body>
 
 <div class="topnav" id="myTopnav">
-  <a href="#home" class="active"> <i class="fas fa-chart-line"></i>Standing</a>
+  <a href="#home" class="active"> </i>Standing</a>
   <a href="creategame.php">Create Game</a>
   <a href="playgametoken.php">Play Game</a>
   <a href="#contact">Stats</a>
@@ -30,6 +27,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
     <i class="fa fa-bars"></i>
   </a>
 </div>
+
 
 <div class="table-responsive-sm">
 <table class="table">

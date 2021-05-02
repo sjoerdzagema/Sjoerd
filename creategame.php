@@ -121,7 +121,7 @@ input[type=submit]:hover {
         <label for="lname">Token</label>
       </div>
       <div class="col-75">
-        <input type="text" id="lname" name="token" placeholder="Enter a 4 digit number f.e. 4355 and remember this">
+        <input type="text" id="lname" name="token" placeholder="Enter one digit f.e. 9 and remember this">
       </div>
     </div>
     <div class="row">
