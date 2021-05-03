@@ -22,8 +22,7 @@ if (mysqli_num_rows($result301) == 1){
           $ratingplayer1 = $row['rating'];
 
   
-    var_dump($ratingplayer1);
-    
+   
   }
 }
 
@@ -35,8 +34,7 @@ $result302 = mysqli_query($conn,"SELECT userID,rating FROM standings WHERE userI
           $ratingplayer2 = $row['rating'];
 
   
-    var_dump($ratingplayer2);
-    
+   
   }
 }
 
@@ -69,13 +67,15 @@ else {echo 'problem';
 
     }
     elseif ($winner == $player2) {
-        $newratingplayer2 = $ratingplayer2 + (20 - $rankingchange1);
+      $rankingchange1 = (20 - $rankingchange1);
+        $newratingplayer2 = $ratingplayer2 + $rankingchange1;
     $updateturnquery3 = "UPDATE standings SET rating = $newratingplayer2 WHERE userID = $winner";      
     if ($conn->query($updateturnquery3) === FALSE) {     
               echo "problem";
             die();}
-
-        $newratingplayer1 = $ratingplayer1 - (20 - $rankingchange1);
+            $rankingchange1 = (20 - $rankingchange1);
+           
+        $newratingplayer1 = $ratingplayer1 - $rankingchange1;
         $updateturnquery4 = "UPDATE standings SET rating = $newratingplayer1 WHERE userID = $loser";      
         if ($conn->query($updateturnquery4) === FALSE) {     
                     echo "problem";
@@ -103,13 +103,14 @@ if ($ratingplayer2 > $ratingplayer1){
 
     }
     elseif ($winner == $player1) {
-        $newratingplayer1 = $ratingplayer1 + (20 - $rankingchange1);
+      $rankingchange1 = (20 - $rankingchange1);
+        $newratingplayer1 = $ratingplayer1 + $rankingchange1;
     $updateturnquery7 = "UPDATE standings SET rating = $newratingplayer1 WHERE userID = $winner";      
     if ($conn->query($updateturnquery7) === FALSE) {     
               echo "problem";
             die();}
 
-        $newratingplayer2 = $ratingplayer2 - (20 - $rankingchange1);
+        $newratingplayer2 = $ratingplayer2 - $rankingchange1;
         $updateturnquery8 = "UPDATE standings SET rating = $newratingplayer2 WHERE userID = $loser";      
         if ($conn->query($updateturnquery8) === FALSE) {     
                     echo "problem";

@@ -112,6 +112,7 @@ input[type=submit]:hover {
 
 $username = $_SESSION['usernamelogin'];
 require_once("calculatescore.php");
+require_once("highestscorepergame.php");
 
 
 ?>
@@ -123,15 +124,33 @@ require_once("calculatescore.php");
   <div class="col-sm" ><h1 class="display-2"><?php echo '- ', $rankingchange1; ?></h1></div>    
   </div>   
 </div>
-<div class="container">
-<div class="row">
-  <div class="col-sm"><h10><?php echo 'Highest score ', $winnerusername; ?></h10></div>
-  <div class="col-sm" ><h1 class="display-2"><?php echo '+ ', $rankingchange1; ?></h1></div>
-  <div class="col-sm"><h5 class="display-1"><?php echo 'Loser ', $loserusername; ?></h5></div>
-  <div class="col-sm" ><h1 class="display-2"><?php echo '- ', $rankingchange1; ?></h1></div>    
-  </div>   
-</div>
 
+<div class="table-responsive-sm">
+<table class="table">
+  <caption></caption>
+  <thead>
+    <tr>
+    <th scope="col">Name</th>
+      <th scope="col">Highest score</th>
+      <th scope="col">Game average</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><?php echo $usernameplayer1; ?></th>
+      <td><?php echo $highestscoreplayer1; ?></td>
+      <td><?php echo $averageplayer1; ?></td>
+      
+    </tr>
+    <tr>
+      <th scope="row"><?php echo $usernameplayer2; ?></th>
+      <td><?php echo $highestscoreplayer2; ?></td>
+      <td><?php echo $averageplayer2; ?></td>
+      
+    </tr>
+
+  </tbody>
+</table>
 
 <script>
 window.setTimeout(function(){
@@ -139,7 +158,7 @@ window.setTimeout(function(){
 // Move to a new location or you can do something else
 window.location.href = "https://localhost/Sjoerd/dashboard.php";
 
-}, 30000000);
+}, 20000);
 </script>
   
 </body>

@@ -11,8 +11,7 @@ if (mysqli_num_rows($result301) == 1){
     $player1 = $row['player1'];
     $player2 = $row['player2'];
   
-    var_dump($winner);
-    
+   
   }
 }
 else {echo 'problem';
