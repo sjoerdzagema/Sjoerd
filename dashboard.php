@@ -10,8 +10,8 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="dashboard.css">
 
 </head>
@@ -21,7 +21,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
   <a href="#home" class="active"> </i>Standing</a>
   <a href="creategame.php">Create Game</a>
   <a href="playgametoken.php">Play Game</a>
-  <a href="#contact">Stats</a>
+  
   <a href="destroysession.php" onclick="endsession()">Log out </a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
@@ -61,18 +61,6 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
 </table>
 </div>
 
-<div style="padding-left:16px">
-<?php
-echo '<pre>';
-var_dump($_SESSION);
-
-if ($_SESSION['usernamelogin'] == 'arjen'){
-  echo '<pre>';
-var_dump($_SESSION['usernamelogin']);
-
-}
-
-?>
 
 </div>
 

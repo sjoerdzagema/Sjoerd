@@ -102,6 +102,16 @@ input[type=submit]:hover {
   margin-top: 20px !important;
 }
 
+#progressBar {
+  font-size: 175%;
+  text-align: center;
+}
+
+#gekhuis {
+  text-align: center;
+  margin-top: 100px !important;
+}
+
 </style>
 
 </head>
@@ -152,14 +162,29 @@ require_once("highestscorepergame.php");
   </tbody>
 </table>
 
+<div id = "gekhuis">
+<progress value="0" max="10" id="progressBar"></progress>
+</div>
+
 <script>
 window.setTimeout(function(){
 
 // Move to a new location or you can do something else
 window.location.href = "https://localhost/Sjoerd/dashboard.php";
 
-}, 20000);
+}, 11000);
 </script>
+
+<script>
+  var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+  }
+  document.getElementById("progressBar").value = 10 - timeleft;
+  timeleft -= 1;
+}, 1000);
+  </script>
   
 </body>
 </html>

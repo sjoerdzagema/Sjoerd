@@ -87,10 +87,10 @@ input[type=submit]:hover {
 
 
 <div class="topnav" id="myTopnav">
-<a href="playgame.php" class="active">Play Game</a>
-  <a href="dashboard.php">Standing</a>
-    <a href="#contact">Stats</a>
-  <a href="#about">Bets </a>
+<a href="creategame.php" class="active">Create Game</a>
+  <a href="dashboard.php"> </i>Standing</a>
+  <a href="playgametoken.php">Play Game</a>  
+  <a href="destroysession.php" onclick="endsession()">Log out </a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
@@ -113,7 +113,7 @@ input[type=submit]:hover {
         <label for="lname">Player 2</label>
       </div>
       <div class="col-75">
-        <input type="text" id="lname" name="player2" placeholder="Enter the username of your opponent">
+        <input type="text" id="lname" name="player2" placeholder="Enter the name of your opponent">
       </div>
     </div>
     <div class="row">

@@ -99,6 +99,10 @@ input[type=submit]:hover {
   text-align: center;
 }
 
+.btn-success {
+  margin-top: 20px !important;
+}
+
 </style>
 
 </head>
@@ -106,10 +110,10 @@ input[type=submit]:hover {
 
 
 <div class="topnav" id="myTopnav">
-<a href="playgame.php" class="active">Play Game</a>
+<a href="playgame.php" class="active"> Play Game</a>
+<a href="creategame.php" >Create Game</a>
   <a href="dashboard.php">Standing</a>
-    <a href="#contact">Stats</a>
-  <a href="#about">Bets </a>
+  <a href="destroysession.php" onclick="endsession()">Log out </a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>

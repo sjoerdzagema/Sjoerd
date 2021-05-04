@@ -19,9 +19,7 @@ if (mysqli_num_rows($result301) == 1){
     if (mysqli_num_rows($result302) ==1){
 
         while ($row = mysqli_fetch_assoc($result302)) {
-          $ratingplayer1 = $row['rating'];
-
-  
+          $ratingplayer1 = $row['rating'];  
    
   }
 }
@@ -32,9 +30,7 @@ $result302 = mysqli_query($conn,"SELECT userID,rating FROM standings WHERE userI
 
         while ($row = mysqli_fetch_assoc($result302)) {
           $ratingplayer2 = $row['rating'];
-
-  
-   
+    
   }
 }
 
@@ -73,8 +69,7 @@ else {echo 'problem';
     if ($conn->query($updateturnquery3) === FALSE) {     
               echo "problem";
             die();}
-            $rankingchange1 = (20 - $rankingchange1);
-           
+                  
         $newratingplayer1 = $ratingplayer1 - $rankingchange1;
         $updateturnquery4 = "UPDATE standings SET rating = $newratingplayer1 WHERE userID = $loser";      
         if ($conn->query($updateturnquery4) === FALSE) {     

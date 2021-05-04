@@ -108,17 +108,6 @@ input[type=submit]:hover {
 <body>
 
 
-<div class="topnav" id="myTopnav">
-<a href="playgame.php" class="active">Play Game</a>
-  <a href="dashboard.php">Standing</a>
-    <a href="#contact">Stats</a>
-  <a href="#about">Bets </a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
-
-
 <?php
 require_once("config.php");
 require_once("sqlgetgameinfo.php");

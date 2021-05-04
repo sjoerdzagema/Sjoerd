@@ -8,17 +8,32 @@ $score = ($_POST['score']);
 $playerid = $_SESSION['userid'];
 $gameid = $_SESSION['gameid'];
 
+
 if ($score > 180){
   header("Location: https://localhost/Sjoerd/playgame.php");
           die(); 
 }
 
+if ($_SESSION['player1id'] == $_SESSION['userid']){
+if (($_SESSION['player1score'] - $score) < 0){
+  header("Location: https://localhost/Sjoerd/playgame.php");
+          die(); 
+}
+}
+
+
+if ($_SESSION['player2id'] == $_SESSION['userid']){
+if (($_SESSION['player2score'] - $score) < 0){
+   header("Location: https://localhost/Sjoerd/playgame.php");
+          die(); 
+}
+}
 
 if ($_SESSION['player1id'] == $_SESSION['userid']){
   if(($_SESSION['player1score'] - $score) > 0 && $score <= 180){
   $_SESSION['player1score'] = ($_SESSION['player1score'] - $score);
   $newscore = $_SESSION['player1score'];
-  
+ 
 
   $updatescore = "UPDATE games SET player1score = $newscore WHERE gameid = $gameid";      
   if ($conn->query($updatescore) === FALSE) {     
@@ -44,9 +59,7 @@ die();
   if ($_SESSION['player2id'] == $_SESSION['userid']){
     if(($_SESSION['player2score'] - $score) > 0 && $score <= 180){
     $_SESSION['player2score'] = ($_SESSION['player2score'] - $score);
-    $newscore = $_SESSION['player2score'];
-
-    
+    $newscore = $_SESSION['player2score'];    
 
     $updatescore = "UPDATE games SET player2score = $newscore WHERE gameid = $gameid";      
     if ($conn->query($updatescore) === FALSE) {     
