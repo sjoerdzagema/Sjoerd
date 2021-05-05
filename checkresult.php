@@ -2,19 +2,22 @@
 
 require_once("config.php");
 
-$resultgameinfo = mysqli_query($conn,"SELECT result FROM games WHERE result IS NULL");
+$resultgameinfo = mysqli_query($conn,"SELECT result FROM games ORDER BY endtime DESC LIMIT 1");
+
   
 if (mysqli_num_rows($resultgameinfo) == 1){
-
-echo "inprogress";
+    while ($row = mysqli_fetch_assoc($resultgameinfo)) {
+        if($row['result'] !== NULL){
+            echo "finished";
+        }
+       
+      }
     
-}
+    }
+    else{
+        echo 'inprogress';
+    }
 
-elseif (mysqli_num_rows($resultgameinfo) == 0){
-    echo "finished";
 
-}
-else {echo 'problem sir';
-   die();}
 
 ?>

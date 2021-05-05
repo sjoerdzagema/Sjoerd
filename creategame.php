@@ -99,7 +99,7 @@ input[type=submit]:hover {
 <?php $username = $_SESSION['usernamelogin'] ?>
 
 <div class="container">
-<form action="newgame.php" method="POST">
+<form name="myForm" action="newgame.php" method="POST" onsubmit="return validateForm()">
     <div class="row">
       <div class="col-25">
         <label for="fname">Player 1</label>
@@ -121,7 +121,7 @@ input[type=submit]:hover {
         <label for="lname">Token</label>
       </div>
       <div class="col-75">
-        <input type="text" id="lname" name="token" placeholder="Enter one digit f.e. 9 and remember this">
+        <input type="text" id="lname" name="token" placeholder="Fill in number between 1 and 9 and remember this">
       </div>
     </div>
     <div class="row">
@@ -129,7 +129,7 @@ input[type=submit]:hover {
         <label for="lname">Player that can start the game</label>
       </div>
       <div class="col-75">
-        <input type="text" id="lname" name="playercanstart" placeholder="enter the username of the player that can start">
+        <input type="text" id="lname" name="playercanstart" placeholder="Enter the name of the player that can start">
       </div>
     </div>
     <div class="row">
@@ -148,6 +148,51 @@ function myFunction() {
   }
 }
 </script>
+
+<script>
+function validateForm() {
+
+ var player1 = '<?php echo $_SESSION['usernamelogin'];?>';
+  var player2 = document.forms["myForm"]["player2"].value;
+  var token = document.forms["myForm"]["token"].value;
+  var playercanstart = document.forms["myForm"]["playercanstart"].value;
+
+  if (player2 == "" || token == "" || playercanstart == "" ) {
+  alert("Fill in all the fields");
+  return false;
+}
+
+
+if (player2 != "sjoerd" && player2 != "boris" && player2 != "selena" && player2 != "arnout" && player2 != "monique" 
+&& player2 != "iris" && player2 != "ingrid" && player2 != "linda" && player2 != "tommie" && player2 != "zoe" 
+&&player2 != "nicolas" &&player2 != "shanne" &&player2 != "jelle" &&
+player2 != "jeroen" && player2 != "arjen") {
+  alert("name player 2 not correct. examples: arnout zoe nicolas");
+  return false;
+}
+
+if (player2 == player1 ) {
+  alert("You can not play against yourself");
+  return false;
+}
+
+if (isNaN(+token) == true){
+      alert("token: fill in a number between 1 and 9");
+    return false;
+
+  }
+
+
+  if (playercanstart != player1 && playercanstart != player2) {
+    alert("Fill in name of player1 or player2 for start player");
+    return false;
+  }
+
+
+
+}
+
+ </script>
 
 </body>
 </html>

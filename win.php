@@ -105,6 +105,7 @@ input[type=submit]:hover {
 #progressBar {
   font-size: 175%;
   text-align: center;
+
 }
 
 #gekhuis {

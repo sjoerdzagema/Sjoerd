@@ -196,8 +196,9 @@ function myFunction() {
 $(document).ready(function() {
   setInterval(function() {
     cache_clear()
-  }, 10000);
+  }, 2000000);
 });
+
 
 function cache_clear() {
   window.location.reload(true);
@@ -210,7 +211,7 @@ function cache_clear() {
 <script>
 
 //Call the yourAjaxCall() function every 1000 millisecond
-setInterval("yourAjaxCall()",3000);
+setInterval("yourAjaxCall()",5000);
 
 function yourAjaxCall(){
   $.ajax({    //create an ajax request to display.php
@@ -219,8 +220,12 @@ function yourAjaxCall(){
         dataType: "html",   //expect html to be returned                
         success: function(response){  
           if (response == "finished"){
+            //alert(response);
             window.location.replace("https://localhost/Sjoerd/win.php");
               }                  
+        },
+        failure: function (response) {
+            if (response != 'inprogress' || response != 'problem sir') fail(response);
         }
 
     });

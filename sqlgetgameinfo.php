@@ -2,7 +2,7 @@
 
 require_once("config.php");
 
-$resultgameinfo = mysqli_query($conn,"SELECT gameid,player1,player2,playerturn,player1score,player2score FROM games WHERE result IS NULL AND player1_active='true' AND player2_active='true' ORDER BY starttime DESC LIMIT 1");
+$resultgameinfo = mysqli_query($conn,"SELECT gameid,player1,player2,playerturn,player1score,player2score FROM games WHERE result IS NULL");
 
 if (mysqli_num_rows($resultgameinfo) == 1){
 
@@ -16,8 +16,15 @@ if (mysqli_num_rows($resultgameinfo) == 1){
     
 }
 
+if (mysqli_num_rows($resultgameinfo) == 0){
+  echo 'zero boy';
+  die(mysqli_error($conn));
 }
-else {echo 'problem';
-   die();}
+
+}
+else {
+  echo 'problem sqlgetgameinfor';
+  die(mysqli_error($conn));
+};
 
    ?>
