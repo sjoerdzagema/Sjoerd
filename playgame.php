@@ -4,6 +4,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
     header("Location: https://localhost/Sjoerd/login.html");
     die();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -196,7 +197,7 @@ function myFunction() {
 $(document).ready(function() {
   setInterval(function() {
     cache_clear()
-  }, 2000000);
+  }, 11000);
 });
 
 
@@ -211,7 +212,7 @@ function cache_clear() {
 <script>
 
 //Call the yourAjaxCall() function every 1000 millisecond
-setInterval("yourAjaxCall()",5000);
+setInterval("yourAjaxCall()",1000);
 
 function yourAjaxCall(){
   $.ajax({    //create an ajax request to display.php

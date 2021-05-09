@@ -110,9 +110,10 @@ input[type=submit]:hover {
 
 
 <div class="topnav" id="myTopnav">
-<a href="playgame.php" class="active"> Play Game</a>
+<a href="playgametoken.php" class="active"> Play Game</a>
 <a href="creategame.php" >Create Game</a>
   <a href="dashboard.php">Standing</a>
+  <a href="stats.php"> Stats</a>
   <a href="destroysession.php" onclick="endsession()">Log out </a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
@@ -121,7 +122,7 @@ input[type=submit]:hover {
 
 
 <?php
-$username = $_SESSION['usernamelogin']
+$username = $_SESSION['usernamelogin'];
 ?>
 
 <div class="container">

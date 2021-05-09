@@ -1,89 +1,51 @@
 <?php
+
 require_once("config.php");
 
+$result301 = mysqli_query($conn,"SELECT users.username as USERNAME, MAX(score) as maxscore
+FROM scores JOIN users ON scores.playerid = users.userID
+group by scores.playerid ORDER BY maxscore DESC");
 
-$result301 = mysqli_query($conn,"SELECT gameid,player1,player2,result FROM games ORDER BY endtime DESC LIMIT 1");
+
+$data1 = array();
   
-$player2scores = array();
-
-if (mysqli_num_rows($result301) == 1){
+if (mysqli_num_rows($result301) > 0){
 
   while ($row = mysqli_fetch_assoc($result301)) {
-    $winner = $row['result'];
-    $player1 = $row['player1'];
-    $player2 = $row['player2'];
-    $gameid = $row['gameid'];
- 
-$result302 = mysqli_query($conn,"SELECT gameid,score FROM scores WHERE playerid = $player2 AND gameid = $gameid");
-  
-if (mysqli_num_rows($result302) > 0){
-
-  while ($row = mysqli_fetch_assoc($result302)) {
-    $bijzonder = (int)$row['score'];  
-    array_push($player2scores, $bijzonder);
-    
-      }
-      
-      
-}
+    $playerid = $row['USERNAME'];
+    $avgscore = $row['maxscore'];
+    $roundedavgscore = number_format((float)$avgscore, 2, '.', '');
+    #echo 'playerid: ',$playerid, 'score: ', $roundedavgscore;
+    $data1[$playerid] = $roundedavgscore;
+   
   }
 }
+else {echo 'problem';
+   die();}
 
-$result399 = mysqli_query($conn,"SELECT gameid,player1,player2,result FROM games ORDER BY endtime DESC LIMIT 1");
-$player1scores = array();
+   
+$usernamesmaxscores = array();
+$maxscores = array();
 
-if (mysqli_num_rows($result399) == 1){
+$counter = 0;
 
-  while ($row = mysqli_fetch_assoc($result399)) {
-    $winner = $row['result'];
-    $player1 = $row['player1'];
-    $player2 = $row['player2'];
-    $gameid = $row['gameid'];
-    
-$result309 = mysqli_query($conn,"SELECT gameid,score FROM scores WHERE playerid = $player1 AND gameid = $gameid");
-  
-if (mysqli_num_rows($result309) > 0){
 
-  while ($row = mysqli_fetch_assoc($result309)) {
-    $bijzonder1 = (int)$row['score'];  
-    array_push($player1scores, $bijzonder1);
-    
-      }
-      
-      
-}
-  }
+foreach($data1 as $key => $value){  
+    if ($counter < 5) {
+    $usernamesmaxscores[] = $key;
+    $maxscores[] = $value;
+    $counter = $counter + 1;}
+    else {break;}
 }
 
-$result303 = mysqli_query($conn,"SELECT username FROM users WHERE userID = $player1");
-  
-if (mysqli_num_rows($result303) == 1){
-
-  while ($row = mysqli_fetch_assoc($result303)) {
-    $usernameplayer1 = $row['username'];       
-      
-}
-  }
-
-  $result304 = mysqli_query($conn,"SELECT username FROM users WHERE userID = $player2");
-  
-if (mysqli_num_rows($result304) == 1){
-
-  while ($row = mysqli_fetch_assoc($result304)) {
-    $usernameplayer2 = $row['username'];       
-      
-}
-  }
-
-$averageplayer1 = array_sum($player1scores) / count($player1scores);
-$averageplayer2 = array_sum($player2scores) / count($player2scores);
-$averageplayer1 = number_format((float)$averageplayer1, 2, '.', '');
-$averageplayer2 = number_format((float)$averageplayer2, 2, '.', '');
+$js_array_usernamesmaxscores = json_encode($usernamesmaxscores);
+$js_array_maxscores = json_encode($maxscores);
 
 
-$highestscoreplayer2 = max($player2scores);
-$highestscoreplayer1 = max($player1scores);
 
-#$highestscoreplayer1 = max($player1scores);
+print_r($js_array_usernamesmaxscores);
+//print_r($labelsr);
+
+
 
 ?>

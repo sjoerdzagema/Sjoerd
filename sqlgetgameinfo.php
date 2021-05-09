@@ -2,7 +2,7 @@
 
 require_once("config.php");
 
-$resultgameinfo = mysqli_query($conn,"SELECT gameid,player1,player2,playerturn,player1score,player2score FROM games WHERE result IS NULL");
+$resultgameinfo = mysqli_query($conn,"SELECT gameid,player1,player2,playerturn,player1score,player2score FROM games WHERE result IS NULL AND player1_active = 'true' AND player2_active = 'true'");
 
 if (mysqli_num_rows($resultgameinfo) == 1){
 

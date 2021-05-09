@@ -89,7 +89,8 @@ input[type=submit]:hover {
 <div class="topnav" id="myTopnav">
 <a href="creategame.php" class="active">Create Game</a>
   <a href="dashboard.php"> </i>Standing</a>
-  <a href="playgametoken.php">Play Game</a>  
+  <a href="playgametoken.php">Play Game</a>
+  <a href="stats.php"> Stats</a>  
   <a href="destroysession.php" onclick="endsession()">Log out </a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>

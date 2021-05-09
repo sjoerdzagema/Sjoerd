@@ -98,7 +98,7 @@ if ($ratingplayer2 > $ratingplayer1){
 
     }
     elseif ($winner == $player1) {
-      $rankingchange1 = (20 - $rankingchange1);
+      $rankingchange1 = (20 - $rankingchange1);//19.96
         $newratingplayer1 = $ratingplayer1 + $rankingchange1;
     $updateturnquery7 = "UPDATE standings SET rating = $newratingplayer1 WHERE userID = $winner";      
     if ($conn->query($updateturnquery7) === FALSE) {     
